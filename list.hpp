@@ -7,59 +7,59 @@
 
 template <class T>
 class List {
-	private:
-		struct Node {
-			T data;
-			Node* prev;
-			Node* next;
-		};
-		Node firstNode;
-		Node lastNode;
-		unsigned size;
+    private:
+        struct Node {
+            T data;
+            Node* prev;
+            Node* next;
+        };
+        Node firstNode;
+        Node lastNode;
+        unsigned size;
 	
-	public:
-		unsigned Size() { return size; }
-		List();
-		List(const List<T>& B);
-		~List();
-		class iterator {
-			private:
-				friend class List<T>;
-				Node* node;
-			public:
-				iterator(Node* ptr) : node(ptr) {}
-				void operator--(int) { if(node->prev) node = node->prev; }
-				void operator++(int) { if(node->next) node = node->next; }
-				T& operator*() { return node->data; }
-				bool operator==(const iterator& it) { return node == it.node; }
-				bool operator!=(const iterator& it) { return node != it.node; }
-		};
-		class const_iterator {
-			private:
-				friend class List<T>;
-				const Node* node;
-			public:
-				const_iterator(const Node* ptr) : node(ptr) {}
-				const_iterator(const iterator& it) : node(it.node) {}
-				void operator--(int) { if(node->prev) node = node->prev; }
-				void operator++(int) { if(node->next) node = node->next; }
-				const T& operator*() { return node->data; }
-				bool operator==(const const_iterator& it) { return node == it.node; }
-				bool operator!=(const const_iterator& it) { return node != it.node; }
-		};
-		void operator=(const List<T>& B);
-		iterator remove(iterator it);
-		iterator removeLast();
-		void clear();
-		void insert(const T& data);
-		void insert(const iterator it, const T& data);
-		void sortedUnion(List<T>& listB);
-	
-		iterator begin() { return firstNode.next; }
-		const_iterator begin() const { return firstNode.next; }
-		iterator last() { if(lastNode.prev != &firstNode) return lastNode.prev; else return end(); }
-		iterator end() { return &lastNode; }
-		const_iterator end() const { return &lastNode; }
+    public:
+        unsigned Size() { return size; }
+        List();
+        List(const List<T>& B);
+        ~List();
+        class iterator {
+            private:
+                friend class List<T>;
+                Node* node;
+            public:
+                iterator(Node* ptr) : node(ptr) {}
+                void operator--(int) { if(node->prev) node = node->prev; }
+                void operator++(int) { if(node->next) node = node->next; }
+                T& operator*() { return node->data; }
+                bool operator==(const iterator& it) { return node == it.node; }
+                bool operator!=(const iterator& it) { return node != it.node; }
+        };
+        class const_iterator {
+            private:
+                friend class List<T>;
+                const Node* node;
+            public:
+                const_iterator(const Node* ptr) : node(ptr) {}
+                const_iterator(const iterator& it) : node(it.node) {}
+                void operator--(int) { if(node->prev) node = node->prev; }
+                void operator++(int) { if(node->next) node = node->next; }
+                const T& operator*() { return node->data; }
+                bool operator==(const const_iterator& it) { return node == it.node; }
+                bool operator!=(const const_iterator& it) { return node != it.node; }
+        };
+        void operator=(const List<T>& B);
+        iterator remove(iterator it);
+        iterator removeLast();
+        void clear();
+        void insert(const T& data);
+        void insert(const iterator it, const T& data);
+        void sortedUnion(List<T>& listB);
+        
+        iterator begin() { return firstNode.next; }
+        const_iterator begin() const { return firstNode.next; }
+        iterator last() { if(lastNode.prev != &firstNode) return lastNode.prev; else return end(); }
+        iterator end() { return &lastNode; }
+        const_iterator end() const { return &lastNode; }
 };
 
 template <class T>
@@ -117,10 +117,8 @@ typename List<T>::iterator List<T>::removeLast() {
 
 template <class T>
 void List<T>::clear() {
-	for(List<T>::iterator it = begin();
-		it != end();
-		it = remove(it))
-		;
+	for(List<T>::iterator it = begin(); it != end(); it = remove(it))
+        ;
 	size = 0;
 }
 
@@ -159,9 +157,3 @@ void List<T>::sortedUnion(List<T>& listB) {
 }
 
 #endif
-
-
-
-
-
-
